@@ -22,14 +22,13 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
 
-    "lib": ["es2023"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "module": "esnext",
     "target": "es2022",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
     "resolveJsonModule": true,
     "noEmit": true,
-    "incremental": true,
 
     "declaration": true,
     "declarationMap": true,
