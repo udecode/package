@@ -1,0 +1,1 @@
+@.cursor/rules/ultracite.mdc
