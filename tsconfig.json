@@ -18,11 +18,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "module": "esnext",
     "target": "es2022",
     "moduleResolution": "bundler",
@@ -51,10 +47,5 @@
     "**/*.mjs",
     "**/*.mjsx"
   ],
-  "exclude": [
-    "node_modules",
-    "**/node_modules",
-    "dist",
-    "**/dist"
-  ]
+  "exclude": ["node_modules", "**/node_modules", "dist", "**/dist"]
 }
