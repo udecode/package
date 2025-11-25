@@ -4,10 +4,13 @@ import { defineConfig } from 'tsdown';
 const HAS_REACT = false;
 
 export default defineConfig({
+  platform: 'neutral',
   target: 'esnext',
   tsconfig: './tooling/tsconfig.build.json',
   exports: true,
   sourcemap: true,
+  dts: true,
+  outExtensions: () => ({ js: '.js', dts: '.d.ts' }),
   plugins: HAS_REACT
     ? [
         pluginBabel({
