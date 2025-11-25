@@ -7,7 +7,7 @@ on:
 jobs:
   release:
     # Basic security: the release job can only be executed from this repo and from the main branch (not a remote thing)
-    if: ${{ github.repository == 'udecode/better-auth-convex' && contains('refs/heads/main',github.ref)}}
+    if: ${{ github.repository == 'udecode/TEMPLATE' && contains('refs/heads/main',github.ref)}}
     name: Release and changelog
     runs-on: ubuntu-latest
     steps:
@@ -18,20 +18,26 @@ jobs:
           # @link https://github.com/actions/checkout#fetch-all-history-for-all-tags-and-branches
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - uses: oven-sh/setup-bun@v2
+        name: Install bun
         with:
-          version: 10
-          run_install: false
+          bun-version: latest
 
-      - name: Install Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install
+      - uses: actions/cache@v4
+        name: ♻️ Setup bun cache
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: 📥 Install
+        run: bun install --frozen-lockfile
 
       # @link https://github.com/changesets/action
       - name: 🦋 Create Release Pull Request or Publish to npm
@@ -41,7 +47,7 @@ jobs:
           # publish: yarn g:release
           cwd: ${{ github.workspace }}
           title: '[Release] Version packages'
-          publish: pnpm release
+          publish: bun run release
           # Optional, might be used in conjunction with GITHUB_TOKEN to
           # allow running the workflows on a Version package action.
           # Be aware of security implications.

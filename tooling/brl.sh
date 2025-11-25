@@ -1,5 +1,7 @@
 #!/bin/sh
 
+INIT_CWD="${INIT_CWD:-$PWD}"
+
 # Change to the initial working directory
 cd "$INIT_CWD" || { echo "Failed to change directory to $INIT_CWD"; exit 1; }
 
