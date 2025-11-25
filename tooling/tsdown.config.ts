@@ -10,7 +10,6 @@ export default defineConfig({
   exports: true,
   sourcemap: true,
   dts: true,
-  outExtensions: () => ({ js: '.js', dts: '.d.ts' }),
   plugins: HAS_REACT
     ? [
         pluginBabel({
